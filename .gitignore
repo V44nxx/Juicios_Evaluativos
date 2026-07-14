@@ -1,0 +1,17 @@
+# IDEs and Editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# phpMyAdmin / backup sql dumps if any (except the main database schema.sql)
+*.sql.gz
+*.sql.zip

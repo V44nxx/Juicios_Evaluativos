@@ -8,7 +8,7 @@ ob_start();
     <div class="topbar-subtitle">Importar aprendices desde archivo Sofia Plus (CSV o Excel)</div>
   </div>
   <div class="topbar-actions">
-    <a href="/juicios_evaluativos/assets/templates/template_aprendices.csv"
+    <a href="<?= $GLOBALS['base_url'] ?>assets/templates/template_aprendices.csv"
        class="btn btn-secondary btn-sm" download>📥 Descargar Plantilla CSV</a>
   </div>
 </header>

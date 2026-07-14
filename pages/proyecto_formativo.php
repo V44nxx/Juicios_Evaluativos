@@ -181,7 +181,7 @@ async function crearFase() {
   const nombre = document.getElementById('fase-nombre').value.trim();
   if (!nombre) { showToast('El nombre es requerido', 'warning'); return; }
 
-  const res = await fetch('/juicios_evaluativos/api/proyecto.php?action=crear_fase', {
+  const res = await fetch(BASE_URL + 'api/proyecto.php?action=crear_fase', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -208,7 +208,7 @@ async function crearActividad() {
   const competencias = [...document.querySelectorAll('.chk-comp:checked')].map(c => parseInt(c.value));
   const resultados = [...document.querySelectorAll('.chk-res:checked')].map(r => parseInt(r.value));
 
-  const res = await fetch('/juicios_evaluativos/api/proyecto.php?action=crear_actividad', {
+  const res = await fetch(BASE_URL + 'api/proyecto.php?action=crear_actividad', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ nombre, descripcion: document.getElementById('act-desc').value, id_fase: parseInt(id_fase), competencias, resultados })
@@ -225,14 +225,14 @@ async function crearActividad() {
 
 async function eliminarFase(id) {
   if (!confirm('¿Eliminar esta fase y todas sus actividades?')) return;
-  const res = await fetch(`/juicios_evaluativos/api/proyecto.php?action=eliminar_fase&id=${id}`, { method: 'DELETE' });
+  const res = await fetch(`${BASE_URL}api/proyecto.php?action=eliminar_fase&id=${id}`, { method: 'DELETE' });
   const data = await res.json();
   if (data.success) { showToast('Fase eliminada', 'success'); loadFases(); }
 }
 
 async function eliminarActividad(id, id_fase) {
   if (!confirm('¿Eliminar esta actividad?')) return;
-  const res = await fetch(`/juicios_evaluativos/api/proyecto.php?action=eliminar_actividad&id=${id}`, { method: 'DELETE' });
+  const res = await fetch(`${BASE_URL}api/proyecto.php?action=eliminar_actividad&id=${id}`, { method: 'DELETE' });
   const data = await res.json();
   if (data.success) { showToast('Actividad eliminada', 'success'); loadActividades(id_fase); }
 }

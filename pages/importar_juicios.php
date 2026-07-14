@@ -8,7 +8,7 @@ ob_start();
     <div class="topbar-subtitle">Carga masiva de registros de juicios evaluativos en formato CSV o Excel</div>
   </div>
   <div class="topbar-actions">
-    <a href="/juicios_evaluativos/assets/templates/template_juicios.csv"
+    <a href="<?= $GLOBALS['base_url'] ?>assets/templates/template_juicios.csv"
        class="btn btn-secondary btn-sm" download>📥 Plantilla CSV</a>
   </div>
 </header>

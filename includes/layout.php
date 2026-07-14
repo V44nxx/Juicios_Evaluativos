@@ -1,5 +1,17 @@
 <?php
-function renderLayout($title, $activePage, $content) { ?>
+$script_name = $_SERVER['SCRIPT_NAME'];
+$GLOBALS['base_url'] = '/';
+if (strpos($script_name, '/pages/') !== false) {
+    $GLOBALS['base_url'] = substr($script_name, 0, strpos($script_name, '/pages/') + 1);
+} elseif (strpos($script_name, '/api/') !== false) {
+    $GLOBALS['base_url'] = substr($script_name, 0, strpos($script_name, '/api/') + 1);
+} elseif (strpos($script_name, '/index.php') !== false) {
+    $GLOBALS['base_url'] = substr($script_name, 0, strpos($script_name, '/index.php') + 1);
+}
+
+function renderLayout($title, $activePage, $content) {
+  $base_url = $GLOBALS['base_url'];
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,10 +19,10 @@ function renderLayout($title, $activePage, $content) { ?>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?= htmlspecialchars($title) ?> | Juicios Evaluativos SENA</title>
   <meta name="description" content="Sistema de gestión de juicios evaluativos para el SENA - Control de aprendices, competencias y resultados de aprendizaje">
-  <link rel="stylesheet" href="/juicios_evaluativos/assets/css/styles.css">
-  <link rel="stylesheet" href="/juicios_evaluativos/assets/css/dashboard-elegant.css">
+  <link rel="stylesheet" href="<?= $base_url ?>assets/css/styles.css">
+  <link rel="stylesheet" href="<?= $base_url ?>assets/css/dashboard-elegant.css">
   <script>
-  const BASE_URL = '/juicios_evaluativos/';
+  const BASE_URL = '<?= $base_url ?>';
 
   // Toast utility
   function showToast(msg, type = 'info', duration = 4000) {
@@ -83,37 +95,37 @@ function renderLayout($title, $activePage, $content) { ?>
 
     <nav class="sidebar-nav">
       <div class="nav-group-label">Principal</div>
-      <a href="/juicios_evaluativos/pages/dashboard.php" 
+      <a href="<?= $base_url ?>pages/dashboard.php" 
          class="nav-item <?= $activePage === 'dashboard' ? 'active' : '' ?>">
         <span class="nav-icon">📊</span> Dashboard Principal
       </a>
 
       <div class="nav-group-label">Carga de Datos</div>
-      <a href="/juicios_evaluativos/pages/carga_aprendices.php"
+      <a href="<?= $base_url ?>pages/carga_aprendices.php"
          class="nav-item <?= $activePage === 'carga_aprendices' ? 'active' : '' ?>">
         <span class="nav-icon">👥</span> Carga Masiva Aprendices
       </a>
-      <a href="/juicios_evaluativos/pages/importar_juicios.php"
+      <a href="<?= $base_url ?>pages/importar_juicios.php"
          class="nav-item <?= $activePage === 'importar_juicios' ? 'active' : '' ?>">
         <span class="nav-icon">📥</span> Importar Juicios
       </a>
 
       <div class="nav-group-label">Consultas</div>
-      <a href="/juicios_evaluativos/pages/consulta_aprendiz.php"
+      <a href="<?= $base_url ?>pages/consulta_aprendiz.php"
          class="nav-item <?= $activePage === 'consulta_aprendiz' ? 'active' : '' ?>">
         <span class="nav-icon">🔍</span> Consulta por Aprendiz
       </a>
-      <a href="/juicios_evaluativos/pages/filtro_avanzado.php"
+      <a href="<?= $base_url ?>pages/filtro_avanzado.php"
          class="nav-item <?= $activePage === 'filtro_avanzado' ? 'active' : '' ?>">
         <span class="nav-icon">⚙️</span> Filtro Avanzado
       </a>
 
       <div class="nav-group-label">Proyecto Formativo</div>
-      <a href="/juicios_evaluativos/pages/proyecto_formativo.php"
+      <a href="<?= $base_url ?>pages/proyecto_formativo.php"
          class="nav-item <?= $activePage === 'proyecto_formativo' ? 'active' : '' ?>">
         <span class="nav-icon">📋</span> Fases y Actividades
       </a>
-      <a href="/juicios_evaluativos/pages/dashboard_fases.php"
+      <a href="<?= $base_url ?>pages/dashboard_fases.php"
          class="nav-item <?= $activePage === 'dashboard_fases' ? 'active' : '' ?>">
         <span class="nav-icon">🗂️</span> Dashboard de Fases
       </a>

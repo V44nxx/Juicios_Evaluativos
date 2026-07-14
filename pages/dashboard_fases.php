@@ -69,7 +69,7 @@ async function loadDashboardFases() {
         <div class="empty-state" style="padding:60px">
           <div class="empty-icon">📋</div>
           <h3>No hay fases definidas</h3>
-          <p class="text-muted">Ve al módulo de <a href="/juicios_evaluativos/pages/proyecto_formativo.php">Fases y Actividades</a> para crear el proyecto formativo</p>
+          <p class="text-muted">Ve al módulo de <a href="${BASE_URL}pages/proyecto_formativo.php">Fases y Actividades</a> para crear el proyecto formativo</p>
         </div>
       </div>`;
     return;
